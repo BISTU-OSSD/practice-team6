@@ -121,3 +121,87 @@ def get_rec_from_favorites(user_data):
         recommendations.append(movie)
 
     return recommendations
+
+
+def main():
+    watched_scifi_one = create_movie("星际远航", "科幻", 4.8)
+    watched_scifi_one.update({"id": 1, "host": "Netflix"})
+
+    watched_scifi_two = create_movie("月球基地", "科幻", 4.6)
+    watched_scifi_two.update({"id": 2, "host": "Prime Video"})
+
+    watchlist_comedy = create_movie("周末喜剧", "喜剧", 4.2)
+    watchlist_comedy.update({"id": 3, "host": "Netflix"})
+
+    friend_netflix_scifi = create_movie("未来城市", "科幻", 4.7)
+    friend_netflix_scifi.update({"id": 4, "host": "Netflix"})
+
+    friend_disney_scifi = create_movie("银河少年", "科幻", 4.5)
+    friend_disney_scifi.update({"id": 5, "host": "Disney+"})
+
+    friend_comedy = create_movie("欢乐旅程", "喜剧", 4.3)
+    friend_comedy.update({"id": 6, "host": "Netflix"})
+
+    favorite_unique = create_movie("独家收藏", "剧情", 4.9)
+    favorite_unique.update({"id": 7, "host": "Prime Video"})
+
+    user_data = {
+        "watched": [],
+        "watchlist": [],
+        "friends": [
+            {
+                "watched": [
+                    watched_scifi_one,
+                    friend_netflix_scifi,
+                    friend_disney_scifi,
+                ]
+            },
+            {
+                "watched": [
+                    friend_netflix_scifi.copy(),
+                    friend_comedy,
+                ]
+            },
+        ],
+        "subscriptions": ["Netflix", "Prime Video"],
+        "favorites": [
+            friend_netflix_scifi,
+            favorite_unique,
+        ],
+    }
+
+    add_to_watched(user_data, watched_scifi_one)
+    add_to_watched(user_data, watched_scifi_two)
+    add_to_watchlist(user_data, watchlist_comedy)
+    watch_movie(user_data, watchlist_comedy["title"])
+
+    watched_titles = [movie["title"] for movie in user_data["watched"]]
+    unique_titles = [
+        movie["title"] for movie in get_unique_watched(user_data)
+    ]
+    friend_unique_titles = [
+        movie["title"] for movie in get_friends_unique_watched(user_data)
+    ]
+    available_titles = [
+        movie["title"] for movie in get_available_recs(user_data)
+    ]
+    genre_titles = [
+        movie["title"] for movie in get_new_rec_by_genre(user_data)
+    ]
+    favorite_titles = [
+        movie["title"] for movie in get_rec_from_favorites(user_data)
+    ]
+
+    print("观影派对功能演示")
+    print(f"已看电影: {watched_titles}")
+    print(f"已看电影平均评分: {get_watched_avg_rating(user_data):.2f}")
+    print(f"最常观看类型: {get_most_watched_genre(user_data)}")
+    print(f"仅自己看过: {unique_titles}")
+    print(f"仅好友看过: {friend_unique_titles}")
+    print(f"订阅平台可观看推荐: {available_titles}")
+    print(f"最常观看类型推荐: {genre_titles}")
+    print(f"收藏夹推荐: {favorite_titles}")
+
+
+if __name__ == "__main__":
+    main()
