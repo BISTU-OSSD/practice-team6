@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 观影派对</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 观影派对</h1>
+            <p>和朋友一起发现好电影</p>
+        </header>
+
+        <!-- 用户登录 -->
+        <section class="user-section">
+            <h2>👤 我的账号</h2>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="输入你的用户名" value="alice">
+                <button onclick="loadUserData()">登录 / 切换用户</button>
+            </div>
+            <div id="user-info" class="user-info">
+                <span>已看: <strong id="watched-count">0</strong> 部</span>
+                <span>想看: <strong id="watchlist-count">0</strong> 部</span>
+                <span>好友: <strong id="friends-count">0</strong> 人</span>
+                <span>平均评分: <strong id="avg-rating">-</strong></span>
+                <span>最常看: <strong id="most-genre">-</strong></span>
+            </div>
+        </section>
+
+        <!-- 添加电影 -->
+        <section class="movie-section">
+            <h2>➕ 添加电影</h2>
+            <div class="input-group">
+                <input type="text" id="movie-title" placeholder="电影名称">
+                <input type="text" id="movie-genre" placeholder="类型 (如 动作, 喜剧)">
+                <input type="number" id="movie-rating" placeholder="评分 (1-10)" step="0.1" min="1" max="10">
+                <button onclick="addMovie()">添加</button>
+            </div>
+            <div class="action-buttons">
+                <button onclick="addToWatched()">标记为已看</button>
+                <button onclick="addToWatchlist()">加入想看</button>
+                <button onclick="watchMovie()">从想看移至已看</button>
+            </div>
+        </section>
+
+        <!-- 好友管理 -->
+        <section class="friend-section">
+            <h2>👥 好友管理</h2>
+            <div class="input-group">
+                <input type="text" id="friend-username" placeholder="好友用户名">
+                <button onclick="addFriend()">添加好友</button>
+            </div>
+        </section>
+
+        <!-- 推荐 -->
+        <section class="rec-section">
+            <h2>🎯 推荐</h2>
+            <div class="action-buttons">
+                <button onclick="getUniqueWatched()">我的独享电影</button>
+                <button onclick="getFriendsUniqueWatched()">好友独享电影</button>
+                <button onclick="getAvailableRecs()">订阅推荐</button>
+                <button onclick="getRecByGenre()">类型推荐</button>
+                <button onclick="getRecFromFavorites()">收藏推荐</button>
+            </div>
+            <div id="rec-results" class="rec-results">
+                <p class="hint">点击上方按钮查看推荐结果</p>
+            </div>
+        </section>
+
+        <!-- 当前数据展示 -->
+        <section class="data-section">
+            <h2>📊 我的数据</h2>
+            <div class="data-grid">
+                <div class="data-column">
+                    <h3>已看</h3>
+                    <ul id="watched-list"></ul>
+                </div>
+                <div class="data-column">
+                    <h3>想看</h3>
+                    <ul id="watchlist-list"></ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
