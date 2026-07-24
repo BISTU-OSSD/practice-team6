@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 30px 0 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    color: white;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+
+section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    color: #1a1a2e;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.input-group input {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+button {
+    padding: 10px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background: #5a6fd6;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.action-buttons button {
+    background: #48bb78;
+}
+
+.action-buttons button:hover {
+    background: #38a169;
+}
+
+.user-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 12px 0;
+    font-size: 0.95rem;
+    color: #4a5568;
+}
+
+.user-info strong {
+    color: #1a1a2e;
+}
+
+.rec-results {
+    margin-top: 16px;
+    padding: 16px;
+    background: #f7fafc;
+    border-radius: 8px;
+    min-height: 80px;
+}
+
+.rec-results .hint {
+    color: #a0aec0;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.rec-results ul {
+    list-style: none;
+    padding: 0;
+}
+
+.rec-results li {
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    background: white;
+    border-radius: 6px;
+    border-left: 4px solid #667eea;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.data-column h3 {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: #4a5568;
+}
+
+.data-column ul {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.data-column li {
+    padding: 6px 10px;
+    margin-bottom: 4px;
+    background: #f7fafc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .data-grid {
+        grid-template-columns: 1fr;
+    }
+    .input-group {
+        flex-direction: column;
+    }
+    .input-group input {
+        min-width: unset;
+    }
+}
